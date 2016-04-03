@@ -1,7 +1,31 @@
 <p id="notice"><%= notice %></p>
-
 <h1>Listing Users</h1>
-
+<form action=users method="get" id="userform">
+<h>Membership</h>
+<select name="membership" form="userform">
+  <option></option>
+  <option value="Yes">Yes</option>
+  <option value="No">No</option>
+</select>
+<h>Classification</h>
+<select name=classification[] form="userform" multiple="multiple">
+  <option value="Freshman">Freshman</option>
+  <option value="Sophomore">Sophomore</option>
+  <option value="Junior">Junior</option>
+  <option value="Senior">Senior</option>
+  <option value="Graduate">Graduate</option>
+  <option value="PhD">PhD</option>
+</select multiple="multiple">
+<h>Dynasty</h>
+<select name=dynasty[] form="userform" multiple="multiple">
+  <option value="Tang">Tang</option>
+  <option value="Song">Song</option>
+  <option value="Shang">Shang</option>
+  <option value="Qing">Qing</option>
+</select>
+<input name=search type="Submit" value="Search">
+<input name=reset type="Submit" value="Reset">
+</form>
 <table>
   <thead>
     <tr>
