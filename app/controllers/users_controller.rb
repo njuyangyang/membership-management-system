@@ -8,11 +8,12 @@ class UsersController < ApplicationController
     if params[:search]
      redirect =false
   
-          if params[:membership].length !=0
+          if params[:membership]
+            if params[:membership].length !=0
               
                  @membership = params[:membership]
                  session[:membership] = params[:membership]
-              
+            end 
        
           elsif session[:membership] && session[:membership].length != 0
               @membership = session[:membership]

@@ -10,4 +10,7 @@ class StaticPagesController < ApplicationController
   
   def report
   end
+  
+  def login
+  end
 end
