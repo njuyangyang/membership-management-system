@@ -11,6 +11,16 @@ class StaticPagesController < ApplicationController
   def report
   end
   
+  def about
+  end
+  
+  def contact
+  end
+  
   def login
   end
+  
+  def signup
+  end
+
 end
