@@ -4,7 +4,89 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+
+    if params[:search]
+     redirect =false
+  
+          if params[:membership]
+            if params[:membership].length !=0
+              
+                 @membership = params[:membership]
+                 session[:membership] = params[:membership]
+            end 
+       
+          elsif session[:membership] && session[:membership].length != 0
+              @membership = session[:membership]
+              redirect =true
+          else
+              @membership = nil
+          end
+          
+          if params[:classification]
+    
+                 @classification = params[:classification]
+                 session[:classification] = params[:classification]
+           
+       
+          elsif session[:classification] && session[:classification].length != 0
+      
+              @classification = session[:classification]
+              redirect =true
+          else
+              @classification = nil
+          end
+          
+           if params[:dynasty]
+    
+                 @dynasty = params[:dynasty]
+                 session[:dynasty] = params[:dynasty]
+           
+       
+          elsif session[:dynasty] && session[:dynasty].length != 0
+      
+              @dynasty = session[:dynasty]
+              redirect =true
+          else
+              @dynasty = nil
+           end
+      
+          if redirect
+               redirect_to users_path(:membership =>@membership, :classification => @classification,:dynasty =>@dynasty,:search => params[:search])
+          end
+      
+      
+         if @membership && @classification && @dynasty
+          
+              @users = User.where(:membership =>@membership, :classification => @classification,:dynasty =>@dynasty) 
+         elsif  @membership && @classification
+              @users = User.where(:membership =>@membership,:classification => @classification)
+              
+         elsif  @membership && @dynasty
+              @users = User.where(:membership =>@membership,:dynasty => @dynasty) 
+              
+         elsif @classification && @dynasty
+              @users = User.where(:classification => @classification, :dynasty =>@dynasty)     
+          
+         elsif @membership 
+             @users = User.where(:membership =>@membership)
+              
+         elsif @classification
+              @users = User.where(:classification => @classification)
+              
+         elsif @dynasty
+              @users = User.where(:dynasty => @dynasty)
+                
+         else
+              @users= User.all
+         end
+    else
+   
+       @users= User.all
+       session[:membership]=nil
+       session[:classification]=nil
+       session[:dynasty]=nil
+    end
+   
   end
 
   # GET /users/1
