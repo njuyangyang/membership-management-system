@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160328213200) do
+ActiveRecord::Schema.define(version: 20160410190216) do
 
   create_table "dynasties", force: :cascade do |t|
     t.string   "name"
@@ -53,8 +53,11 @@ ActiveRecord::Schema.define(version: 20160328213200) do
     t.string   "shirt"
     t.string   "classification"
     t.string   "dynasty"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "password_digest"
   end
+
+  add_index "users", ["uin"], name: "index_users_on_uin", unique: true
 
 end
