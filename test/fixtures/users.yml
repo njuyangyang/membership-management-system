@@ -1,1 +1,7 @@
-# empty
+Jerry:
+  name: Jerry shen
+  uin: 1111111
+  password_digest: <%= User.digest('password') %>
+  
+
+
