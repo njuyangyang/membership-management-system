@@ -1,14 +1,15 @@
-<form class="form-signin" action =adminhome method="get">
+<form class="form-signin" action =login method="post">
         <h2 class="form-signin-heading">Please Sign in</h2> 
         <label for="inputEmail" class="sr-only">Admin</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Admin ID" required autofocus>
+        <input type="email" id="inputEmail" class="form-control" placeholder="UIN/Admin" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me</input>
-            <p> <%= link_to 'New User?', static_pages_signup_path%><p>
+           <p>New user? <%= link_to "Sign up now!", '#' %></p>
           </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">sign in</button>
  </form>
+ 
