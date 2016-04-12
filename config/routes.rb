@@ -1,18 +1,16 @@
 Rails.application.routes.draw do
-  get 'admin_sessions/new'
-
-  resources :admins
   get 'sessions/new'
+  get 'admin_sessions/new'
 
   resources :events
   resources :users
   resources :dynasties
   resources :point_rules
+  resources :admins
 
   get 'static_pages/help'
   get 'static_pages/adminhome'
   get 'static_pages/report'
-  get 'static_pages/login'
   get 'static_pages/contact'
   get 'static_pages/about'
 
@@ -22,9 +20,14 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'static_pages#home'
   get 'static_pages/signup' => 'users#new'
-  get 'login'   => 'sessions#new'
-  post 'login'   => 'sessions#create'
-  delete 'logout'  => 'sessions#destroy'
+  
+  get 'static_pages/login'  => 'sessions#new'
+  post 'static_pages/login'   => 'sessions#create'
+  delete 'static_pages/logout'  => 'sessions#destroy'
+  
+  get 'adminlogin'   => 'admin_sessions#new'
+  post 'adminlogin'   => 'admin_sessions#create'
+  delete 'adminlogout'  => 'admin_session#destroy'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

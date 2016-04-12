@@ -10,6 +10,7 @@ class AdminsController < ApplicationController
   # GET /admins/1
   # GET /admins/1.json
   def show
+    @admin = Admin.find(params[:id])
   end
 
   # GET /admins/new
@@ -28,7 +29,9 @@ class AdminsController < ApplicationController
 
     respond_to do |format|
       if @admin.save
-        format.html { redirect_to @admin, notice: 'Admin was successfully created.' }
+        log_in @admin
+        flash[:success] = "Successfully created！"
+        format.html { redirect_to @admin }
         format.json { render :show, status: :created, location: @admin }
       else
         format.html { render :new }
@@ -42,7 +45,8 @@ class AdminsController < ApplicationController
   def update
     respond_to do |format|
       if @admin.update(admin_params)
-        format.html { redirect_to @admin, notice: 'Admin was successfully updated.' }
+        flash[:success] = "Successfully update!"
+        format.html { redirect_to @admin}
         format.json { render :show, status: :ok, location: @admin }
       else
         format.html { render :edit }
@@ -55,8 +59,9 @@ class AdminsController < ApplicationController
   # DELETE /admins/1.json
   def destroy
     @admin.destroy
+    flash[:success] = "Successfully destroy！"
     respond_to do |format|
-      format.html { redirect_to admins_url, notice: 'Admin was successfully destroyed.' }
+      format.html { redirect_to admins_url }
       format.json { head :no_content }
     end
   end
@@ -69,6 +74,6 @@ class AdminsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_params
-      params.require(:admin).permit(:name, :uin, :tel, :email)
+      params.require(:admin).permit(:name, :uin, :tel, :email, :password, :password_confirmation)
     end
 end
