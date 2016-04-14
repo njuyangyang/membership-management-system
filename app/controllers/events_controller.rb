@@ -7,7 +7,7 @@ class EventsController < ApplicationController
     
     #session management
    if params[:search]
-   
+
      redirect=false
 
      if params[:category]
