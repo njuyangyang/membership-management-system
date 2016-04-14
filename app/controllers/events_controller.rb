@@ -4,7 +4,87 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+     if params[:search]
+     redirect=false
+
+     if params[:category]
+        @category=params[:category]
+        session[:category]=params[:category]
+
+     elsif session[:category]&&session[:category].length != 0
+        @category=session[:category]
+        redirect=true
+
+     else
+        @category=nil
+
+     end
+ 
+     if params[:semester]
+        @semester=params[:semester]
+        session[:semester]=params[:semester]
+    
+     elsif session[:semester]&&session[:semester].length !=0
+        @semester=session[:semester]
+        redirect=true
+
+     else 
+        @semester=nil
+
+     end
+    
+     if params[:year]
+        @year=params[:year]
+        session[:year]=params[:year]
+
+     elsif session[:year]&&session[:year].length !=0
+        @year=session[:year]
+        redirect=true
+
+     else 
+        @year=nil
+
+     end
+
+     if redirect
+               redirect_to users_path(:category =>@category, :semester => @semester,:year =>@year,:search => params[:search])
+     end
+    
+    #filter
+     if @category && @semester && @year
+              @events = Event.where(:category =>@category, :semester => @semester,:year =>@year) 
+
+     elsif  @category && @semester
+              @events = Event.where(:category =>@category, :semester => @semester)
+              
+     elsif  @category && @year
+              @events = Event.where(:category =>@category,:year =>@year) 
+              
+     elsif @semester && @year
+              @events = Event.where(:semester => @semester,:year =>@year)     
+          
+     elsif @category
+              @events = Event.where(:category =>@category)
+              
+     elsif @semester
+              @events = Event.where(:semester => @semester)
+
+     elsif @year
+              @events = Event.where(:year =>@year)
+                
+     else
+              @events= Event.all
+
+     end
+
+   else
+    
+      @events = Event.all
+      session[:category]=nil
+      session[:semester]=nil
+      session[:year]=nil
+
+   end
   end
 
   # GET /events/1

@@ -1,7 +1,31 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Events</h1>
-
+<form  method="get" id="eventform">
+<h>Membership</h>
+<select name="category" form="eventform" multiple="multiple">
+  <option></option>
+  <option value="Yes">Yes</option>
+  <option value="No">No</option>
+</select>
+<h>Year</h>
+<select name=year[] form="eventform">
+  <option value="2014">Freshman</option>
+  <option value="2015">Sophomore</option>
+  <option value="2016">Junior</option>
+  <option value="2017">Senior</option>
+  <option value="2018">Graduate</option>
+  <option value="2019">PhD</option>
+</select>
+<h>Semester</h>
+<select name=semester[] form="eventform" multiple="multiple">
+  <option value="Spring">Spring</option>
+  <option value="Fall">Fall</option>
+  <option>Cmd for Multi-Choice</option>
+</select>
+<input name=search type="Submit" value="Search">
+<input name=reset type="Submit" value="Reset">
+</form>
 <table>
   <thead>
     <tr>
