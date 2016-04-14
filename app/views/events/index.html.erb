@@ -2,26 +2,28 @@
 
 <h1>Listing Events</h1>
 <form  method="get" id="eventform">
-<h>Membership</h>
+<h>Category</h>
 <select name="category" form="eventform" multiple="multiple">
-  <option></option>
-  <option value="Yes">Yes</option>
-  <option value="No">No</option>
+  <option value="Concession">Concession</option>
+  <option value="Service">Service</option>
+  <option value="Supporting IMS">Supporting IMs</option>
+  <option value="IMs Participant">Service</option>
+  <option value="General Meeting">General Meeting</option>
+  <option value="Social Service">Social Service</option>
 </select>
 <h>Year</h>
-<select name=year[] form="eventform">
-  <option value="2014">Freshman</option>
-  <option value="2015">Sophomore</option>
-  <option value="2016">Junior</option>
-  <option value="2017">Senior</option>
-  <option value="2018">Graduate</option>
-  <option value="2019">PhD</option>
+<select name=year[] form="eventform" multiple="multiple">
+  <option value="2014">2014</option>
+  <option value="2015">2015</option>
+  <option value="2016">2016</option>
+  <option value="2017">2017</option>
+  <option value="2018">2018</option>
+  <option value="2019">2019</option>
 </select>
 <h>Semester</h>
 <select name=semester[] form="eventform" multiple="multiple">
   <option value="Spring">Spring</option>
   <option value="Fall">Fall</option>
-  <option>Cmd for Multi-Choice</option>
 </select>
 <input name=search type="Submit" value="Search">
 <input name=reset type="Submit" value="Reset">
