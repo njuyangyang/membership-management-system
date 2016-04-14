@@ -7,6 +7,7 @@ class EventsController < ApplicationController
     
     #session management
    if params[:search]
+   
      redirect=false
 
      if params[:category]
@@ -26,7 +27,7 @@ class EventsController < ApplicationController
         @semester=params[:semester]
         session[:semester]=params[:semester]
     
-     elsif sesion[:semester]&&session[:semester].length !=0
+     elsif session[:semester]&&session[:semester].length !=0
         @semester=session[:semester]
         redirect=true
 
@@ -36,6 +37,7 @@ class EventsController < ApplicationController
      end
     
      if params[:year]
+     
         @year=params[:year]
         session[:year]=params[:year]
 
@@ -49,33 +51,33 @@ class EventsController < ApplicationController
      end
 
      if redirect
-               redirect_to users_path(:membership =>@membership, :classification => @classification,:dynasty =>@dynasty,:search => params[:search])
+               redirect_to events_path(:category =>@category, :semester => @semester,:year =>@year,:search => params[:search])
      end
     
     #filter
      if @category && @semester && @year
-              @users = User.where(:category =>@category, :semester => @semester,:year =>@year) 
+              @events = Event.where(:category =>@category, :semester => @semester,:year =>@year) 
 
      elsif  @category && @semester
-              @users = User.where(:category =>@category, :semester => @semester)
+              @events = Event.where(:category =>@category, :semester => @semester)
               
      elsif  @category && @year
-              @users = User.where(:category =>@category,:year =>@year) 
+              @events = Event.where(:category =>@category,:year =>@year) 
               
      elsif @semester && @year
-              @users = User.where(:semester => @semester,:year =>@year)     
+              @events = Event.where(:semester => @semester,:year =>@year)     
           
      elsif @category
-              @users = User.where(:category =>@category)
+              @events = Event.where(:category =>@category)
               
      elsif @semester
-              @users = User.where(:semester => @semester)
+              @events = Event.where(:semester => @semester)
 
      elsif @year
-              @users = User.where(:year =>@year)
+              @events =Event.where(:year =>@year)
                 
      else
-              @users= User.all
+              @events = Event.all
 
      end
 
