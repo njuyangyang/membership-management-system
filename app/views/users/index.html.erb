@@ -1,13 +1,32 @@
-
+<html>
+  <head>
+      <style>
+           fieldset {
+           background: lightblue;
+           border: 8px solid yellow;
+           width: 1140px;          
+           }
+    </style>
+  </head>
+  
+  
+<body>
 <h1>Listing Users</h1>
+<br>
+<br>
 <form action=users method="get" id="userform">
-<h>Membership</h>
+  
+<fieldset>
+<h3 class="sub-header">Choose groups you want: </h3>
+<label for="membership">Membership:</label>
 <select name="membership" form="userform">
-  <option></option>
-  <option value="Yes">Yes</option>
-  <option value="No">No</option>
+<option></option>            
+<option value="Yes">Yes</option>
+<option value="No">No</option>
 </select>
-<h>Classification</h>
+
+
+<label for="classification">Classification:</label>
 <select name=classification[] form="userform" multiple="multiple">
   <option value="Freshman">Freshman</option>
   <option value="Sophomore">Sophomore</option>
@@ -17,18 +36,28 @@
   <option value="PhD">PhD</option>
   <option>Cmd for Multi-Choice</option>
 </select>
+
+
 <h>Dynasty</h>
-<select name=dynasty[] form="userform" multiple="multiple">
+<select name=classification[] form="userform" multiple="multiple">
   <option value="Tang">Tang</option>
   <option value="Song">Song</option>
-  <option value="Shang">Shang</option>
   <option value="Qing">Qing</option>
+  <option value="Shang">Shang</option>
+  <option value="Han">Han</option>
   <option>Cmd for Multi-Choice</option>
 </select>
-<input name=search type="Submit" value="Search">
-<input name=reset type="Submit" value="Reset">
+
+<input name="search" type="Submit" value="Search">
+<input name="reset" type="Submit" value="Reset">
+</fieldset>
 </form>
-<h2 class="sub-header">Detail</h2>
+<br>
+<br>
+<br>
+
+<fieldset>
+<h3 class="sub-header">Details</h3>
 <div class="table-responsive">
 <table class="table table-striped">
 <thead>
@@ -63,8 +92,9 @@
     <% end %>
   </tbody>
 </table>
+</fieldset>
 
 <br>
 
-<%= link_to 'New User', new_user_path %>
-<%= link_to "back to dashborad", static_pages_adminhome_path %>
+<p><%= link_to 'New User', new_user_path %></p>
+<p><%= link_to "back to dashborad", static_pages_adminhome_path %></p>
