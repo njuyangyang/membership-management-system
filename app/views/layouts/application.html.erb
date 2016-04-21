@@ -2,6 +2,7 @@
 <html>
 <head lang ="en">
   <title>Welcome to CSA</title>
+  <link href="images/favicon.ico" rel="Bootstrap" />
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -16,7 +17,6 @@
       <%= yield %>
       
       <%= render 'layouts/footer' %>
-      <%= debug(params) if Rails.env.development? %>
     </div>
  
   </body>
