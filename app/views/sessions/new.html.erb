@@ -1,33 +1,19 @@
+<h1>Log In</h1>
 
-   <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
-        <h2>Admin Dashboard</h2>
-        <p>This is an admin dashboard.</p>
-      </div>
-    </div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(:session, url: static_pages_login_path) do |f| %>
+    
+      <%= label_tag(:name, "Name") %>
+      <%= f.text_field :name, class: 'form-control' %>
+      
+      <%= label_tag(:uin, "UIN") %>
+      <%= f.text_field :uin, class: 'form-control' %>
 
-    <div class="container">
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-4">
-          <h2>Event Management</h2>
-          <p><a class="btn btn-default" href=events_path role="button">Next</a></p>
-        </div>
-        <div class="col-md-4">
-          <h2>Users Management</h2>
-          <p class="btn btn-default" role="button"><%= link_to "Next", users_path%></p>
-       </div>
-        <div class="col-md-4">
-          <h2>Report</h2>
-          <p><a class="btn btn-default" href="#" role="button">Get Report</a></p>
-        </div>
-         <div class="col-md-4">
-          <h2>Change Points</h2>
-          <p><a class="btn btn-default" href="#" role="button">Next</a></p>
-       </div>
-         <div class="col-md-4">
-          <h2>Change Grouping</h2>
-          <p><a class="btn btn-default" href="#" role="button">Next</a></p>
-       </div>
-      </div>
+      <br/>
+      <%= f.submit "Log in", class: "btn btn-primary" %>
+    <% end %>
+
+    <p>New user? <%= link_to "Sign up now!", static_pages_signup_path %></p>
+  </div>
+</div>
