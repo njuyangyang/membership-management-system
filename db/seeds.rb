@@ -291,3 +291,4 @@ User::HABTM_Events.create!([
   {event_id: 6, user_id: 19},
   {event_id: 6, user_id: 20}
 ])
+
