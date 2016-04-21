@@ -70,4 +70,5 @@
 </table>
 <br>
 <%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path(:search => "search") %>
+<%= link_to 'Back', users_path(:search => "search") %>|
+<%= link_to "Log out", static_pages_logout_path, method: "delete" %>
