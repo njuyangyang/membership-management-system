@@ -34,6 +34,7 @@ class EventsController < ApplicationController
      end
     
      if params[:year]
+
         @year=params[:year]
         session[:year]=params[:year]
 
@@ -85,6 +86,7 @@ class EventsController < ApplicationController
       session[:year]=nil
 
    end
+
   end
 
   # GET /events/1

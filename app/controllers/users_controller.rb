@@ -92,6 +92,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @user = User.find(params[:id])
   end
   
 
@@ -111,7 +112,9 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        log_in @user
+        flash[:success] = "Successfully created！"
+        format.html { redirect_to @user}
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -125,7 +128,8 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        flash[:success] = "Successfully update！"
+        format.html { redirect_to @user}
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -139,7 +143,8 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      flash[:success] = "Successfully delete！"
+      format.html { redirect_to users_url}
       format.json { head :no_content }
     end
   end
