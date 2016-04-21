@@ -3,8 +3,8 @@ class AdminSessionsController < ApplicationController
   end
   
   def create
-    admin = Admin.find_by(uin: params[:session][:uin].downcase)
-    if user && user.authenticate(params[:session][:name])
+    admin = Admin.find_by(uin: params[:session][:uin])
+    if admin && admin.authenticate(params[:session][:password])
       # Log the user in and redirect to the user's show page.
       log_in admin
       redirect_to admin
