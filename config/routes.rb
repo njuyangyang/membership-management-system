@@ -11,12 +11,13 @@ Rails.application.routes.draw do
   get 'static_pages/help'
   get 'static_pages/adminhome'
   get 'static_pages/report'
-  get 'static_pages/contact'
   get 'static_pages/about'
   get 'static_pages/privacy'
   get 'static_pages/terms'
   get 'static_pages/characters'
-  get 'static_pages/images'
+  get 'static_pages/imagesmembers'
+  get 'static_pages/imagesvolunteer'
+  get 'static_pages/imagessports'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
