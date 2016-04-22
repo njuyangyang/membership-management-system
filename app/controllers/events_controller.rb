@@ -92,6 +92,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+  
   end
 
   # GET /events/new
@@ -142,6 +143,29 @@ class EventsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def checkin
+      @user = User.find_by(uin: params[:user][:uin])
+    if @user != nil
+        # Log the user in and redirect to the user's show page.
+      @event = Event.find_by(id: params[:id])
+    if @event.users !=nil
+      @event.users.each do |user|
+        if (user == @user)
+          flash[:notice] = "This UIN has already checked in!"
+          redirect_to event_path(@event)
+        end
+      end
+    end
+      @event.users<<@user
+      render 'show'
+    else
+      # Create an error message.
+      flash[:notice] = "Invalid UIN, please sign up!"
+      render 'new'
+    end
+  end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
