@@ -37,7 +37,9 @@
 </p>
 
 
-<table>
+<h3 class="sub-header">Event</h3>
+<div class="table-responsive">
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
@@ -57,14 +59,15 @@
         <td><%= event.semester %></td>
         <td><%= event.category %></td>
         <td><%= event.description %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <br>
 <%= link_to 'Edit', edit_user_path(@user) %> |
+<% if params[:checkin] %>
+<%= link_to 'Back', event_path(@event) %>|
+<% else %>
 <%= link_to 'Back', users_path(:search => "search") %>|
+<% end %>
 <%= link_to "Log out", static_pages_logout_path, method: "delete" %>

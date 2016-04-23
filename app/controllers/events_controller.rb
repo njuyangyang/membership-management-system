@@ -4,6 +4,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
+  
      if params[:search]
      redirect=false
 
@@ -146,25 +147,27 @@ class EventsController < ApplicationController
   
   def checkin
       @user = User.find_by(uin: params[:user][:uin])
-    if @user != nil
-        # Log the user in and redirect to the user's show page.
       @event = Event.find_by(id: params[:id])
+  if @user != nil
+        # Log the user in and redirect to the user's show page.
     if @event.users !=nil
       @event.users.each do |user|
-        if (user == @user)
-          flash[:notice] = "This UIN has already checked in!"
-          redirect_to event_path(@event)
-        end
+         if (user == @user)
+           redirect_to event_path
+           flash[:notice] = "This UIN Has Already Checked in"
+           return
+         end
       end
     end
       @event.users<<@user
-      render 'show'
-    else
+      redirect_to event_path(@event)
+  else
       # Create an error message.
-      flash[:notice] = "Invalid UIN, please sign up!"
-      render 'new'
-    end
+      redirect_to event_path(@event)
+      flash[:notice] = "Invalid UIN"
   end
+  end
+
   
 
   private

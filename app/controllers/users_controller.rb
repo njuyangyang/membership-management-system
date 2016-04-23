@@ -92,7 +92,14 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
+   if params[:remove]
+     @event = Event.find(params[:eventid])
+     @event.users.delete(@user)
+     redirect_to event_path(@event)
+   end 
+  if params[:checkin]
+    @event = Event.find(params[:eventid])
+  end
   end
   
 
@@ -103,6 +110,9 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    if params[:checkin]
+    @event = Event.find(params[:eventid])
+    end
   end
 
   # POST /users
