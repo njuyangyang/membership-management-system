@@ -1,26 +1,31 @@
-<html>
-  <head>
-      <style>
-           fieldset {
-           background: lightblue;
-           border: 3px solid yellow;
-           width: 1140px;          
-           }
-    </style>
-  </head>
-  
-<body>
-
 <h1>Listing Events</h1>
 <br>
 <br>
 <form  method="get" id="eventform">
-  
-<fieldset>
-<h3 class="sub-header">Choose groups you want: </h3>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<label for="category">Category:</label>
+<h>Category</h>
+<!--<<<<<<< HEAD
+<select name="category" form="eventform" multiple="multiple">
+  <option value="Concession">Concession</option>
+  <option value="Service">Service</option>
+  <option value="Supporting IMS">Supporting IMs</option>
+  <option value="IMs Participant">Service</option>
+  <option value="General Meeting">General Meeting</option>
+  <option value="Social Service">Social Service</option>
+</select>
+<h>Year</h>
+<select name=year[] form="eventform" multiple="multiple">
+  <option value="2014">2014</option>
+  <option value="2015">2015</option>
+  <option value="2016">2016</option>
+  <option value="2017">2017</option>
+  <option value="2018">2018</option>
+  <option value="2019">2019</option>
+</select>
+<h>Semester</h>
+<select name=semester[] form="eventform" multiple="multiple">
+  <option value="Spring">Spring</option>
+  <option value="Fall">Fall</option>
+======= -->
 <select name="category[]" form="eventform"  multiple="multiple">
   <option value="Concession">Concession</option>
   <option value="Service">Service</option>
@@ -43,6 +48,7 @@
 <select name=semester[] form="eventform" multiple="multiple">
   <option value="Fall">Fall</option>
   <option value="Spring">Spring</option>
+>>>>>>> upstream/master
 </select>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -51,15 +57,10 @@
 <input name=reset type="Submit" value="Reset">
 </fieldset>
 </form>
-<br>
-<br>
-<br>
-
-<fieldset>
-<h3 class="sub-header">Details</h3>
+<h2 class="sub-header">Detail</h2>
 <div class="table-responsive">
 <table class="table table-striped">
-<thead>
+  <thead>
     <tr>
       <th>Name</th>
       <th>Year</th>

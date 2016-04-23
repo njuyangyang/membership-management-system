@@ -27,12 +27,13 @@ Rails.application.routes.draw do
   get 'static_pages/signup' => 'users#new'
   
   get 'static_pages/login'  => 'sessions#new'
+  post 'events/:id' => 'events#checkin'
   post 'static_pages/login'   => 'sessions#create'
   delete 'static_pages/logout'  => 'sessions#destroy'
   
   get 'adminlogin'   => 'admin_sessions#new'
   post 'adminlogin'   => 'admin_sessions#create'
-  delete 'adminlogout'  => 'admin_session#destroy'
+  delete 'adminlogout'  => 'admin_sessions#destroy'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

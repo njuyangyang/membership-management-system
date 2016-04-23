@@ -4,10 +4,8 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    
-    #session management
-   if params[:search]
-
+  
+     if params[:search]
      redirect=false
 
      if params[:category]
@@ -37,7 +35,7 @@ class EventsController < ApplicationController
      end
     
      if params[:year]
-     
+
         @year=params[:year]
         session[:year]=params[:year]
 
@@ -51,7 +49,7 @@ class EventsController < ApplicationController
      end
 
      if redirect
-               redirect_to events_path(:category =>@category, :semester => @semester,:year =>@year,:search => params[:search])
+               redirect_to users_path(:category =>@category, :semester => @semester,:year =>@year,:search => params[:search])
      end
     
     #filter
@@ -74,10 +72,10 @@ class EventsController < ApplicationController
               @events = Event.where(:semester => @semester)
 
      elsif @year
-              @events =Event.where(:year =>@year)
+              @events = Event.where(:year =>@year)
                 
      else
-              @events = Event.all
+              @events= Event.all
 
      end
 
@@ -95,6 +93,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+  
   end
 
   # GET /events/new
@@ -145,6 +144,31 @@ class EventsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def checkin
+      @user = User.find_by(uin: params[:user][:uin])
+      @event = Event.find_by(id: params[:id])
+  if @user != nil
+        # Log the user in and redirect to the user's show page.
+    if @event.users !=nil
+      @event.users.each do |user|
+         if (user == @user)
+           redirect_to event_path
+           flash[:notice] = "This UIN Has Already Checked in"
+           return
+         end
+      end
+    end
+      @event.users<<@user
+      redirect_to event_path(@event)
+  else
+      # Create an error message.
+      redirect_to event_path(@event)
+      flash[:notice] = "Invalid UIN"
+  end
+  end
+
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.

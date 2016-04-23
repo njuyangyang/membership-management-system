@@ -3,4 +3,8 @@
 <%= render 'form' %>
 
 <%= link_to 'Show', @user %> |
+<% if params[:checkin] %>
+<%= link_to 'Back', event_path(@event) %>
+<% else %>
 <%= link_to 'Back', users_path %>
+<% end %>
