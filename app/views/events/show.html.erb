@@ -61,7 +61,7 @@
   </thead>
 
   <tbody>
-    <% @event.users.each do |user| %>
+    <% @eventusers.each do |user| %>
       <tr>
         <td><%= user.name %></td>
         <td><%= user.uin %></td>
@@ -78,6 +78,7 @@
     <% end %> 
   </tbody>
 </table>
+      <%= will_paginate @eventusers %>
 <% end %>
 
 

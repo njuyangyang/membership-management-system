@@ -57,31 +57,31 @@ class UsersController < ApplicationController
       
          if @membership && @classification && @dynasty
           
-              @users = User.where(:membership =>@membership, :classification => @classification,:dynasty =>@dynasty) 
+              @users = User.where(:membership =>@membership, :classification => @classification,:dynasty =>@dynasty).paginate(:page => params[:page],per_page:20) 
          elsif  @membership && @classification
-              @users = User.where(:membership =>@membership,:classification => @classification)
+              @users = User.where(:membership =>@membership,:classification => @classification).paginate(:page => params[:page],per_page:20)
               
          elsif  @membership && @dynasty
-              @users = User.where(:membership =>@membership,:dynasty => @dynasty) 
+              @users = User.where(:membership =>@membership,:dynasty => @dynasty).paginate(:page => params[:page],per_page:20) 
               
          elsif @classification && @dynasty
-              @users = User.where(:classification => @classification, :dynasty =>@dynasty)     
+              @users = User.where(:classification => @classification, :dynasty =>@dynasty).paginate(:page => params[:page],per_page:20)     
           
          elsif @membership 
-             @users = User.where(:membership =>@membership)
+             @users = User.where(:membership =>@membership).paginate(:page => params[:page],per_page:20)
               
          elsif @classification
-              @users = User.where(:classification => @classification)
+              @users = User.where(:classification => @classification).paginate(:page => params[:page],per_page:20)
               
          elsif @dynasty
-              @users = User.where(:dynasty => @dynasty)
+              @users = User.where(:dynasty => @dynasty).paginate(:page => params[:page],per_page:20)
                 
          else
-              @users= User.all
+              @users= User.paginate(:page => params[:page],per_page:20)
          end
     else
    
-       @users= User.all
+       @users= User.paginate(:page => params[:page],per_page:20)
        session[:membership]=nil
        session[:classification]=nil
        session[:dynasty]=nil
@@ -100,6 +100,7 @@ class UsersController < ApplicationController
   if params[:checkin]
     @event = Event.find(params[:eventid])
   end
+   @userevents =  @user.events.paginate(:page => params[:page],per_page:5)
   end
   
 

@@ -1,5 +1,6 @@
 class AdminSessionsController < ApplicationController
   def new
+    
   end
   
   def create
@@ -7,7 +8,8 @@ class AdminSessionsController < ApplicationController
     if admin && admin.authenticate(params[:session][:password])
       # Log the user in and redirect to the user's show page.
       log_in admin
-      redirect_to admin
+      #redirect_to admin
+      redirect_to static_pages_adminhome_path
     else
       # Create an error message.
       flash.now[:danger] = 'Invalid UIN or Name !' # Not quite right!
