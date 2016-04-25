@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :has_access?, only:[:show,:index]
 
   # GET /users
   # GET /users.json
@@ -164,6 +165,24 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+    end
+    
+    def has_access?
+     
+    if (session[:user_id] != nil)
+      if (params[:id].to_i!= session[:user_id])
+        @user = User.find(session[:user_id])
+       redirect_to root_url
+       flash[:notice] ="you can only view your information!"
+       return
+      end
+    
+    elsif (session[:admin_id] == nil)
+      flash[:notice] ="You shoud have admin access to view this information"
+      redirect_to root_url
+      return
+    end
+    
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
