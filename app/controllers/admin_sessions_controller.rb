@@ -32,7 +32,7 @@ class AdminSessionsController < ApplicationController
   end
   
   # Returns true if the user is logged in, false otherwise.
-  def logged_in?
+  def admin_logged_in?
     !current_admin.nil?
   end
 
