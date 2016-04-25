@@ -155,7 +155,7 @@ User.create!([
   {name: "Lucy", uin: "875349900", tel: "9792130956", email: "lucy233@gmail.com", membership: "Yes", shirt: "Yes", classification: "Junior", dynasty: "Han"},
   {name: "Ketty", uin: "874507834", tel: "9791234567", email: "ketty.hello@gmail.com", membership: "Yes", shirt: "No", classification: "Senior", dynasty: "Han"},
   {name: "Brad", uin: "876543123", tel: "9798883434", email: "brady@gmail.com", membership: "No", shirt: "Yes", classification: "Graduate", dynasty: "Han"},
-  {name: "Herman", uin: "7489804534", tel: "9795862314", email: "herman@tamu.edu", membership: "No", shirt: "No", classification: "PhD", dynasty: "Han"},
+  {name: "Herman", uin: "748980453", tel: "9795862314", email: "herman@tamu.edu", membership: "No", shirt: "No", classification: "PhD", dynasty: "Han"},
   {name: "Jenna", uin: "567876989", tel: "9795871212", email: "jenna@gmail.com", membership: "Yes", shirt: "Yes", classification: "Freshman", dynasty: "Shang"},
   {name: "Josh", uin: "678098345", tel: "9797879999", email: "josh.texas@gmail.com", membership: "Yes", shirt: "No", classification: "Sophomore", dynasty: "Shang"},
   {name: "Jose", uin: "111222333", tel: "9797774444", email: "josebest@gmail.com", membership: "No", shirt: "Yes", classification: "Junior", dynasty: "Shang"},
@@ -168,6 +168,10 @@ User.create!([
   {name: "Ben", uin: "233333333", tel: "9792333333", email: "ben233@gmail.com", membership: "Yes", shirt: "No", classification: "Senior", dynasty: "Song"},
   {name: "Tylor", uin: "344344349", tel: "9793445555", email: "tylor@swift.com", membership: "No", shirt: "Yes", classification: "Graduate", dynasty: "Song"},
   {name: "Cucumber", uin: "788799677", tel: "9797889090", email: "cucu@ber.com", membership: "No", shirt: "No", classification: "PhD", dynasty: "Song"}
+])
+
+Admin.create!([
+  {name: "Admin", uin: "00000000", tel: "9795873517", email: "njuyangyang@tamu.edu",password:"qwe12345"}
 ])
 
 
