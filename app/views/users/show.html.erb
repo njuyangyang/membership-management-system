@@ -52,7 +52,7 @@
   </thead>
 
   <tbody>
-    <% @user.events.each do |event| %>
+    <% @userevents.each do |event| %>
       <tr>
         <td><%= event.name %></td>
         <td><%= event.year %></td>
@@ -63,6 +63,7 @@
     <% end %>
   </tbody>
 </table>
+    <%= will_paginate @userevents %>
 <br>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <% if params[:checkin] %>

@@ -87,9 +87,9 @@
     <% end %>
   </tbody>
 </table>
-</fieldset>
+          <%= will_paginate @events %>
 
 <br>
 
-<%= link_to 'New Event', new_event_path %>
-<%= link_to "Back to dashboard", static_pages_adminhome_path %>
+<%= link_to 'New Event', new_event_path %> |
+<%= link_to "Back to dashborad", static_pages_adminhome_path %>

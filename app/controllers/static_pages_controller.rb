@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+  before_action :has_access?, only:[:adminhome,:report]
   def home
   end
 
@@ -65,5 +66,16 @@ class StaticPagesController < ApplicationController
   
   def contact
   end
+  
+  private
+  
+  
+    def has_access?
+      if (session[:admin_id] == nil)
+      flash[:notice] ="You shoud have admin access to view this information"
+      redirect_to root_url
+      return
+      end
+    end
 
 end

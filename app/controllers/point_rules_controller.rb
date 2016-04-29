@@ -1,6 +1,6 @@
 class PointRulesController < ApplicationController
   before_action :set_point_rule, only: [:show, :edit, :update, :destroy]
-
+  before_action :has_access?
   # GET /point_rules
   # GET /point_rules.json
   def index
@@ -62,6 +62,13 @@ class PointRulesController < ApplicationController
   end
 
   private
+    def has_access?
+      if (session[:admin_id] == nil)
+      flash[:notice] ="You shoud have admin access to view this information"
+      redirect_to root_url
+      return
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_point_rule
       @point_rule = PointRule.find(params[:id])

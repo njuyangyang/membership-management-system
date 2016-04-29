@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :has_access?, only:[:show,:index]
 
   # GET /users
   # GET /users.json
@@ -57,31 +58,31 @@ class UsersController < ApplicationController
       
          if @membership && @classification && @dynasty
           
-              @users = User.where(:membership =>@membership, :classification => @classification,:dynasty =>@dynasty) 
+              @users = User.where(:membership =>@membership, :classification => @classification,:dynasty =>@dynasty).paginate(:page => params[:page],per_page:20) 
          elsif  @membership && @classification
-              @users = User.where(:membership =>@membership,:classification => @classification)
+              @users = User.where(:membership =>@membership,:classification => @classification).paginate(:page => params[:page],per_page:20)
               
          elsif  @membership && @dynasty
-              @users = User.where(:membership =>@membership,:dynasty => @dynasty) 
+              @users = User.where(:membership =>@membership,:dynasty => @dynasty).paginate(:page => params[:page],per_page:20) 
               
          elsif @classification && @dynasty
-              @users = User.where(:classification => @classification, :dynasty =>@dynasty)     
+              @users = User.where(:classification => @classification, :dynasty =>@dynasty).paginate(:page => params[:page],per_page:20)     
           
          elsif @membership 
-             @users = User.where(:membership =>@membership)
+             @users = User.where(:membership =>@membership).paginate(:page => params[:page],per_page:20)
               
          elsif @classification
-              @users = User.where(:classification => @classification)
+              @users = User.where(:classification => @classification).paginate(:page => params[:page],per_page:20)
               
          elsif @dynasty
-              @users = User.where(:dynasty => @dynasty)
+              @users = User.where(:dynasty => @dynasty).paginate(:page => params[:page],per_page:20)
                 
          else
-              @users= User.all
+              @users= User.paginate(:page => params[:page],per_page:20)
          end
     else
    
-       @users= User.all
+       @users= User.paginate(:page => params[:page],per_page:20)
        session[:membership]=nil
        session[:classification]=nil
        session[:dynasty]=nil
@@ -100,6 +101,7 @@ class UsersController < ApplicationController
   if params[:checkin]
     @event = Event.find(params[:eventid])
   end
+   @userevents =  @user.events.paginate(:page => params[:page],per_page:5)
   end
   
 
@@ -163,6 +165,24 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+    end
+    
+    def has_access?
+     
+    if (session[:user_id] != nil)
+      if (params[:id].to_i!= session[:user_id])
+        @user = User.find(session[:user_id])
+       redirect_to root_url
+       flash[:notice] ="you can only view your information!"
+       return
+      end
+    
+    elsif (session[:admin_id] == nil)
+      flash[:notice] ="You shoud have admin access to view this information"
+      redirect_to root_url
+      return
+    end
+    
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
