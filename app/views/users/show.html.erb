@@ -65,10 +65,10 @@
 </table>
     <%= will_paginate @userevents %>
 <br>
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<p class="btn btn-default" role="button"><%= link_to 'Edit', edit_user_path(@user) %></p>
 <% if params[:checkin] %>
-<%= link_to 'Back', event_path(@event) %>|
+<p class="btn btn-default" role="button"><%= link_to 'Back', event_path(@event) %></p>
 <% else %>
-<%= link_to 'Back', users_path(:search => "search") %>|
+<p class="btn btn-default" role="button"><%= link_to 'Back', users_path(:search => "search") %></p>
 <% end %>
-<%= link_to "Log out", static_pages_logout_path, method: "delete" %>
+<p class="btn btn-default" role="button"><%= link_to "Log out", static_pages_logout_path, method: "delete" %></p>

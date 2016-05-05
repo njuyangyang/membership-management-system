@@ -1,6 +1,21 @@
+<html>
+  <head>
+      <style>
+           fieldset {
+           border: 2px solid grey;
+           width: 1140px;   
+           padding: 1em;
+           }
+    </style>
+  </head>
+  
+  
+<body>
 <h1>Report</h1>
 <form action=report method="get" id="userform">
-<h>Classification</h>
+<fieldset>
+<legend>Choose groups you want:</legend>
+<label for="classification">Classification:</label>
 <select name=classification[] form="userform" multiple="multiple">
   <option value="Freshman">Freshman</option>
   <option value="Sophomore">Sophomore</option>
@@ -10,7 +25,9 @@
   <option value="PhD">PhD</option>
   <option>Cmd for Multi-Choice</option>
 </select>
-<h>Dynasty</h>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<label for="dynasty">Dynasty:</label>
 <select name=dynasty[] form="userform" multiple="multiple">
   <option value="Tang">Tang</option>
   <option value="Song">Song</option>
@@ -18,11 +35,16 @@
   <option value="Qing">Qing</option>
   <option>Cmd for Multi-Choice</option>
 </select>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input name=search type="Submit" value="Search">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input name=reset type="Submit" value="Reset">
 </form>
+</fieldset>
 
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<fieldset>
 <h2 class="sub-header">Detail</h2>
 <div class="table-responsive">
 <table class="table table-striped">
@@ -44,3 +66,8 @@
     <% end %>
   </tbody>
 </table>
+</fieldset>
+
+<br>
+<br>
+<p class="btn btn-default" role="button"><%= link_to "Back to Dashborad", static_pages_adminhome_path %></p>
