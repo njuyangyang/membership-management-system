@@ -18,8 +18,7 @@
       <%= f.password_field :password_confirmation, class: 'form-control' %>
       <br/>
       <%= f.submit "Create my account", class: "btn btn-primary" %>
+      <p class="btn btn-default btn-primary" role="button"><%= link_to 'Back', admins_path %></p>
     <% end %>
   </div>
 </div>
-
-<%= link_to 'Back', admins_path %>

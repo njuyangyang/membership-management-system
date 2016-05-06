@@ -1,8 +1,20 @@
+<html>
+  <head>
+      <style>
+           fieldset {
+           border: 4px solid lightblue;
+           width: 1140px;          
+           }
+    </style>
+  </head>
+  
+  
+<body>
 <p id="notice"><%= notice %></p>
-
+<fieldset>
 <h1>Listing Dynasties</h1>
-
-<table>
+<div class="table-responsive">
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
@@ -21,8 +33,9 @@
     <% end %>
   </tbody>
 </table>
+</fieldset>
 
 <br>
 
-<%= link_to 'New Dynasty', new_dynasty_path %>
-<%= link_to "back to dashborad", static_pages_adminhome_path %>
+<p class="btn btn-default" role="button"><%= link_to 'New Dynasty', new_dynasty_path %></p>
+<p class="btn btn-default" role="button"><%= link_to "Back to Dashborad", static_pages_adminhome_path %></p>

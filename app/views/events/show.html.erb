@@ -25,9 +25,10 @@
   <%= @event.description %>
 </p>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
-
+<p class="btn btn-default" role="button"><%= link_to 'Edit', edit_event_path(@event) %></p>
+<p class="btn btn-default" role="button"><%= link_to 'Back', events_path %></p>
+<br>
+<br>
 <div >
   <div >
     <%= form_for(:user, :url => {:controller => "events", :action => "checkin"}) do |f| %>

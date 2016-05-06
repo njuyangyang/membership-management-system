@@ -2,9 +2,9 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @user %> |
+<p class="btn btn-default" role="button"><%= link_to 'Show', @user %></p>
 <% if params[:checkin] %>
-<%= link_to 'Back', event_path(@event) %>
+<p class="btn btn-default" role="button"><%= link_to 'Back', event_path(@event) %></p>
 <% else %>
-<%= link_to 'Back', users_path %>
+<p class="btn btn-default" role="button"><%= link_to 'Back', users_path %></p>
 <% end %>
