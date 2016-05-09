@@ -1,15 +1,100 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :has_access?, only:[:show,:index]
 
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+  
+     if params[:search]
+     redirect=false
+
+     if params[:category]
+        @category=params[:category]
+        session[:category]=params[:category]
+
+     elsif session[:category]&&session[:category].length != 0
+        @category=session[:category]
+        redirect=true
+
+     else
+        @category=nil
+
+     end
+ 
+     if params[:semester]
+        @semester=params[:semester]
+        session[:semester]=params[:semester]
+    
+     elsif session[:semester]&&session[:semester].length !=0
+        @semester=session[:semester]
+        redirect=true
+
+     else 
+        @semester=nil
+
+     end
+    
+     if params[:year]
+
+        @year=params[:year]
+        session[:year]=params[:year]
+
+     elsif session[:year]&&session[:year].length !=0
+        @year=session[:year]
+        redirect=true
+
+     else 
+        @year=nil
+
+     end
+
+     if redirect
+               redirect_to users_path(:category =>@category, :semester => @semester,:year =>@year,:search => params[:search])
+     end
+    
+    #filter
+     if @category && @semester && @year
+              @events = Event.where(:category =>@category, :semester => @semester,:year =>@year).paginate(:page => params[:page],per_page:20) 
+
+     elsif  @category && @semester
+              @events = Event.where(:category =>@category, :semester => @semester).paginate(:page => params[:page],per_page:20)
+              
+     elsif  @category && @year
+              @events = Event.where(:category =>@category,:year =>@year).paginate(:page => params[:page],per_page:20)
+              
+     elsif @semester && @year
+              @events = Event.where(:semester => @semester,:year =>@year).paginate(:page => params[:page],per_page:20)     
+          
+     elsif @category
+              @events = Event.where(:category =>@category).paginate(:page => params[:page],per_page:20)
+              
+     elsif @semester
+              @events = Event.where(:semester => @semester).paginate(:page => params[:page],per_page:20)
+
+     elsif @year
+              @events = Event.where(:year =>@year).paginate(:page => params[:page],per_page:20)
+                
+     else
+              @events= Event.paginate(:page => params[:page],per_page:20)
+
+     end
+
+   else
+    
+      @events = Event.paginate(:page => params[:page],per_page:20)
+      session[:category]=nil
+      session[:semester]=nil
+      session[:year]=nil
+
+   end
+
   end
 
   # GET /events/1
   # GET /events/1.json
   def show
+  @eventusers = @event.users.paginate(:page => params[:page],per_page:5)
   end
 
   # GET /events/new
@@ -60,8 +145,41 @@ class EventsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def checkin
+      @user = User.find_by(uin: params[:user][:uin])
+      @event = Event.find_by(id: params[:id])
+  if @user != nil
+        # Log the user in and redirect to the user's show page.
+    if @event.users !=nil
+      @event.users.each do |user|
+         if (user == @user)
+           redirect_to event_path
+           flash[:notice] = "This UIN Has Already Checked in"
+           return
+         end
+      end
+    end
+      @event.users<<@user
+      redirect_to event_path(@event)
+  else
+      # Create an error message.
+      redirect_to event_path(@event)
+      flash[:notice] = "Invalid UIN"
+  end
+  end
+
+  
 
   private
+  
+    def has_access?
+      if (session[:admin_id] == nil)
+      flash[:notice] ="You shoud have admin access to view this information"
+      redirect_to root_url
+      return
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])

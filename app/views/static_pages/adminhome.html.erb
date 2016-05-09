@@ -1,12 +1,33 @@
-<h1>Admin dashborad</h1>
 
-<ul>
-    <li> <%= link_to "users management", users_path %></li>
-    <li> <%= link_to "event management", events_path %></li>
-    <li> add admin </li>
-    <li> <%= link_to "get report", static_pages_report_path %></li>
-    <li> <%= link_to "change point system", point_rules_path %></li>
-    <li> <%= link_to "change grouping system", dynasties_path %></li>
-</ul>
+   <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h2>Admin Dashboard</h2>
+        <p>This is an admin dashboard.</p>
+      </div>
+    </div>
 
-<%= link_to "home", root_path %>
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Events Management</h2>
+          <p class="btn btn-default" role="button"><%= link_to "Next", events_path%></p>
+        </div>
+        <div class="col-md-4">
+          <h2>Users Management</h2>
+          <p class="btn btn-default" role="button"><%= link_to "Next", users_path%></p>
+       </div>
+        <div class="col-md-4">
+          <h2>Get Report</h2>
+        <p class="btn btn-default" role="button"><%= link_to "Next", static_pages_report_path%></p>
+        </div>
+         <div class="col-md-4">
+          <h2>Change Points</h2>
+        <p class="btn btn-default" role="button"><%= link_to "Next", point_rules_path%></p>
+       </div>
+         <div class="col-md-4">
+          <h2>Change Grouping</h2>
+          <p class="btn btn-default" role="button"><%= link_to "Next", dynasties_path%></p>
+       </div>
+      </div>
